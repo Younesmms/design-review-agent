@@ -53,9 +53,15 @@ public preview).
 Each person who wants to use this skill on their own Figma files runs, once:
 
 ```sh
-gh skill preview Younesmms/design-review-agent design-review-agent   # optional: inspect before installing
-gh skill install Younesmms/design-review-agent design-review-agent --scope user
+gh skill preview Younesmms/design-review-agent design-review-agent --allow-hidden-dirs   # optional: inspect before installing
+gh skill install Younesmms/design-review-agent design-review-agent --scope user --allow-hidden-dirs
 ```
+
+> **Note:** `--allow-hidden-dirs` is required. This skill lives at
+> `.github/skills/design-review-agent/` (a dot-prefixed, "hidden" path by
+> `gh skill`'s discovery rules), not the top-level `skills/` convention it
+> scans by default. Without the flag you'll see `no standard skills found,
+> but 1 skill(s) exist in hidden directories` and installation will fail.
 
 `--scope user` installs it to `~/.copilot/skills/`, so it's available in
 every project/session they work in — not just this repo — and works with any
@@ -79,4 +85,5 @@ When you change the skill:
 2. Validate before publishing: `gh skill publish --dry-run`.
 3. Publish: `gh skill publish`.
 4. Optionally tag a release (e.g. `v1.1.0`) so people who want stability can
-   pin to it: `gh skill install Younesmms/design-review-agent design-review-agent --pin v1.1.0`.
+   pin to it:
+   `gh skill install Younesmms/design-review-agent design-review-agent --pin v1.1.0 --allow-hidden-dirs`.
