@@ -44,9 +44,18 @@ semantic color-token naming pattern, brand/variant/mode coverage, etc.) live
 in `SPECS.md`, next to this file. Those specs are derived from the
 [`MediaMarktSaturn/foundation-design-tokens`](https://github.com/MediaMarktSaturn/foundation-design-tokens)
 `release` branch — the token source synced into Figma via Tokens Studio.
-Read `SPECS.md` before step 3 below and use it as the primary rulebook for
-all four categories. If the file under review is not built on that design
-system, fall back to the generic category descriptions above instead.
+
+For the **Naming Conventions** category specifically, also read
+`NAMING-CONVENTIONS.md` (next to this file) — the MMS organizational
+naming ruleset covering file/page/screen/component/a11y/git naming. Check
+both it and `SPECS.md`'s token-naming grammar together; they cover
+different naming surfaces (organizational structure vs. token/variable
+naming) and neither substitutes for the other.
+
+Read `SPECS.md` (and, for naming, `NAMING-CONVENTIONS.md`) before step 3
+below and use them as the primary rulebook for all four categories. If the
+file under review is not built on that design system / org conventions,
+fall back to the generic category descriptions above instead.
 
 ## Workflow
 

@@ -13,26 +13,33 @@ UX — across four areas:
 It can also implement the fixes it finds directly in Figma via Figma MCP
 tools.
 
-> **Status: v1.1.** `SKILL.md` lays out the overall workflow and guardrails.
-> `SPECS.md` now has concrete, checkable specs for all four review areas,
+> **Status: v1.2.** `SKILL.md` lays out the overall workflow and guardrails.
+> `SPECS.md` has concrete, checkable specs for all four review areas,
 > grounded in the real
 > [`MediaMarktSaturn/foundation-design-tokens`](https://github.com/MediaMarktSaturn/foundation-design-tokens)
 > design-token system (exact spacing/radii/typography scales, the semantic
-> color-naming grammar, brand/variant/mode coverage, etc.). If a reviewed
-> Figma file isn't built on that token system, the skill falls back to the
-> generic guidance in `SKILL.md`.
+> color-naming grammar, brand/variant/mode coverage, etc.). `NAMING-CONVENTIONS.md`
+> adds a second, independent naming ruleset — MMS's organizational
+> conventions for files, pages, screens, components, properties,
+> accessibility annotations, local variables, and branches/commits — checked
+> alongside `SPECS.md`'s token-naming grammar for the Naming Conventions
+> category. If a reviewed Figma file isn't built on that token system / org
+> conventions, the skill falls back to the generic guidance in `SKILL.md`.
 
 ## Repo layout
 
 - `SKILL.md` — canonical copy of the skill at the repo root, for easy
   browsing/reading.
 - `SPECS.md` — the concrete rulebook (exact scales, naming grammar, binding
-  rules) the skill checks Figma files against. Mirrored alongside `SKILL.md`
-  in both locations below.
-- `.github/skills/design-review-agent/SKILL.md` and
-  `.github/skills/design-review-agent/SPECS.md` — the same files, located
-  where GitHub's Agent Skills tooling (and `gh skill`) expects to find them
-  so they can be installed into other people's own environments.
+  rules) the skill checks Figma files against.
+- `NAMING-CONVENTIONS.md` — the MMS organizational naming ruleset (files,
+  pages, screens, BEM components, properties, a11y annotations, variables,
+  branches/commits), checked alongside `SPECS.md` for the Naming
+  Conventions category.
+- `.github/skills/design-review-agent/` — mirrored copies of `SKILL.md`,
+  `SPECS.md`, and `NAMING-CONVENTIONS.md`, located where GitHub's Agent
+  Skills tooling (and `gh skill`) expects to find them so they can be
+  installed into other people's own environments.
 
 Keep both copies of each file in sync when you edit the skill or specs.
 
@@ -67,8 +74,8 @@ gh skill update --all
 
 When you change the skill:
 
-1. Edit `.github/skills/design-review-agent/SKILL.md` and/or `SPECS.md` (and
-   mirror the change into the root copies).
+1. Edit `.github/skills/design-review-agent/SKILL.md`, `SPECS.md`, and/or
+   `NAMING-CONVENTIONS.md` (and mirror the change into the root copies).
 2. Validate before publishing: `gh skill publish --dry-run`.
 3. Publish: `gh skill publish`.
 4. Optionally tag a release (e.g. `v1.1.0`) so people who want stability can
