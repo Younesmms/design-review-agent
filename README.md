@@ -13,20 +13,28 @@ UX — across four areas:
 It can also implement the fixes it finds directly in Figma via Figma MCP
 tools.
 
-> **Status: v1.** The current `SKILL.md` lays out the overall workflow and
-> guardrails. The detailed specs/checklists for each of the four review
-> areas (File Hygiene, Layout & Spacing, Naming Conventions, Design System
-> Compliance) will be fleshed out further in future iterations.
+> **Status: v1.1.** `SKILL.md` lays out the overall workflow and guardrails.
+> `SPECS.md` now has concrete, checkable specs for all four review areas,
+> grounded in the real
+> [`MediaMarktSaturn/foundation-design-tokens`](https://github.com/MediaMarktSaturn/foundation-design-tokens)
+> design-token system (exact spacing/radii/typography scales, the semantic
+> color-naming grammar, brand/variant/mode coverage, etc.). If a reviewed
+> Figma file isn't built on that token system, the skill falls back to the
+> generic guidance in `SKILL.md`.
 
 ## Repo layout
 
 - `SKILL.md` — canonical copy of the skill at the repo root, for easy
   browsing/reading.
-- `.github/skills/design-review-agent/SKILL.md` — the same skill, located
-  where GitHub's Agent Skills tooling (and `gh skill`) expects to find it so
-  it can be installed into other people's own environments.
+- `SPECS.md` — the concrete rulebook (exact scales, naming grammar, binding
+  rules) the skill checks Figma files against. Mirrored alongside `SKILL.md`
+  in both locations below.
+- `.github/skills/design-review-agent/SKILL.md` and
+  `.github/skills/design-review-agent/SPECS.md` — the same files, located
+  where GitHub's Agent Skills tooling (and `gh skill`) expects to find them
+  so they can be installed into other people's own environments.
 
-Keep both copies in sync when you edit the skill.
+Keep both copies of each file in sync when you edit the skill or specs.
 
 ## Installing this skill (for the 30+ reviewers)
 
@@ -59,8 +67,8 @@ gh skill update --all
 
 When you change the skill:
 
-1. Edit `.github/skills/design-review-agent/SKILL.md` (and mirror the change
-   into the root `SKILL.md`).
+1. Edit `.github/skills/design-review-agent/SKILL.md` and/or `SPECS.md` (and
+   mirror the change into the root copies).
 2. Validate before publishing: `gh skill publish --dry-run`.
 3. Publish: `gh skill publish`.
 4. Optionally tag a release (e.g. `v1.1.0`) so people who want stability can

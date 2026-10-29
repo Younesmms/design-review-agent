@@ -37,6 +37,17 @@ these four areas:
    hard-coded colors/spacing/typography that should reference a variable or
    style, off-library component usage.
 
+## Specs
+
+Concrete, checkable rules (exact spacing/radii/typography scales, the
+semantic color-token naming pattern, brand/variant/mode coverage, etc.) live
+in `SPECS.md`, next to this file. Those specs are derived from the
+[`MediaMarktSaturn/foundation-design-tokens`](https://github.com/MediaMarktSaturn/foundation-design-tokens)
+`release` branch — the token source synced into Figma via Tokens Studio.
+Read `SPECS.md` before step 3 below and use it as the primary rulebook for
+all four categories. If the file under review is not built on that design
+system, fall back to the generic category descriptions above instead.
+
 ## Workflow
 
 1. **Identify the target.** Get the Figma file URL or key from the user. If a
