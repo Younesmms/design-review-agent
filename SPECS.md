@@ -270,12 +270,42 @@ Semantic font size scale for reference: `2xs`=10px, `xs`=12px, `sm`=14px,
 Must bind to the scales in §2 — flag hard-coded px/rem values that match
 (or are close to) a scale step but aren't bound to the token.
 
-### Components
+### Components, and local components specifically
 
 - Flag detached/local instances that should be swapped for the matching
   published library component.
 - Flag off-library one-off components that duplicate an existing library
   component's purpose.
+- **Local components vs. the web components Storybook.** The canonical
+  implementation reference for this org's production web components is the
+  internal Storybook (`webmobile-storybook`, SSO-gated — `/docs/welcome--docs`
+  is the entry point). It documents each component's real controls/args
+  (e.g. a `Button` component's `buttonSpacing` control exposed as t-shirt
+  values matching the sizing scale in §2: `xs`, `sm`, `md`, `lg`, …). Treat
+  it as the source of truth for *what props/variants a correctly-built
+  component instance should expose*, the same way `SPECS.md` §1–§3 are the
+  source of truth for tokens and `NAMING-CONVENTIONS.md` is for
+  organizational naming.
+  - If a Figma file has a **local (non-instance) component** that visually
+    or functionally matches something documented in the Storybook (button,
+    input, card, badge, etc.), flag it: it should be swapped for the
+    library component instance instead of being hand-built/detached.
+  - If a local component's **properties/variants** don't match the
+    Storybook component's documented controls (different value sets,
+    missing a control the Storybook exposes, or a property named
+    differently than the Storybook's prop), flag the mismatch — the Figma
+    component property panel should mirror the real component API. Property
+    naming itself still follows `NAMING-CONVENTIONS.md` §3.6
+    (`camelCase`, boolean `is`/`has`/`show` prefixes).
+  - The agent cannot browse the Storybook directly when it's behind
+    interactive SSO. When live access isn't available, ask the user to
+    paste the specific component's docs/args (or an exported snapshot)
+    before asserting a prop-level mismatch — don't guess at a component's
+    real controls.
+  - If no matching Storybook/library component exists for a local
+    component, don't force a swap — flag it as a candidate for a new
+    library component request instead (see `NAMING-CONVENTIONS.md` §3.2,
+    the `ComponentRequests` page).
 
 ### Brand/variant/theme usage
 
@@ -312,3 +342,15 @@ don't let this drift from the real token source.
 §3's organizational naming rules (files/pages/screens/components/a11y/git)
 come from a separate source — see `NAMING-CONVENTIONS.md`'s own "Keeping
 this in sync" note.
+
+§4's "local components vs. Storybook" check references
+`webmobile-storybook-dev.dev.webmobile-mreg.d-p.io` (internal, SSO-gated)
+as the canonical implementation reference for web component
+props/controls. The agent could not fetch its contents directly (it
+redirects to Google sign-in) — the component/prop details above (e.g. the
+`buttonSpacing` control) are inferred only from the URL's query args, not
+verified against the full component catalog. Whoever next has SSO access
+should browse the Storybook, extract the real per-component control list,
+and replace this placeholder note with a concrete component-by-component
+table (component name → documented props/controls → expected Figma
+property-panel shape).
